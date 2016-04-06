@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class MyActivity extends Activity {
@@ -51,6 +53,38 @@ public class MyActivity extends Activity {
 //        });
 
         aboutusMenuPopup.show();
+
+    }
+
+    public void goUp (View v){
+        ImageView gopher = (ImageView) findViewById(R.id.imageView2);
+        RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
+        param.topMargin -= 10;
+        gopher.setLayoutParams(param);
+
+    }
+
+    public void goDown (View v){
+        ImageView gopher = (ImageView) findViewById(R.id.imageView2);
+        RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
+        param.topMargin += 10;
+        gopher.setLayoutParams(param);
+
+    }
+
+    public void goRight (View v){
+        ImageView gopher = (ImageView) findViewById(R.id.imageView2);
+        RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
+        param.leftMargin += 10;
+        gopher.setLayoutParams(param);
+
+    }
+
+    public void goLeft (View v){
+        ImageView gopher = (ImageView) findViewById(R.id.imageView2);
+        RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
+        param.leftMargin -= 10;
+        gopher.setLayoutParams(param);
 
     }
 }
