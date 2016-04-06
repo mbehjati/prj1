@@ -4,13 +4,6 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:weightSum="1">
-    <ImageButton
-            android:layout_width="41dp"
-            android:layout_height="41dp"
-            android:id="@+id/imageButton" android:layout_gravity="right" android:src="@drawable/menu2"
-            android:background="@android:color/transparent"
-            android:onClick="showAboutusMenu"
-    />
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="151dp"

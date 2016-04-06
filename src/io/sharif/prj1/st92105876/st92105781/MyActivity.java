@@ -1,14 +1,11 @@
 package io.sharif.prj1.st92105876.st92105781;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.view.*;
+import android.widget.*;
 
 public class MyActivity extends Activity {
     /**
@@ -18,6 +15,31 @@ public class MyActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu2, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        String names[] = {"Melika Behjati  92105781", "Mina Rafiei      92105876"};
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View convertView = (View) inflater.inflate(R.layout.dialog, null);
+        alertDialog.setView(convertView);
+        alertDialog.setTitle("About Us");
+        ListView lv = (ListView) convertView.findViewById(R.id.listView);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
+        lv.setAdapter(adapter);
+        alertDialog.show();
+        return true;
     }
 
     public void showGameMenu (View v) {
@@ -38,23 +60,6 @@ public class MyActivity extends Activity {
 
     }
 
-    public void showAboutusMenu (View v) {
-
-        PopupMenu aboutusMenuPopup =  new PopupMenu(MyActivity.this, v);
-        aboutusMenuPopup.getMenuInflater().inflate(R.menu.menu2, aboutusMenuPopup.getMenu());
-//        aboutusMenuPopup.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-//
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//
-//
-//                return true;
-//            }
-//        });
-
-        aboutusMenuPopup.show();
-
-    }
 
     public void goUp (View v){
         ImageView gopher = (ImageView) findViewById(R.id.imageView2);
