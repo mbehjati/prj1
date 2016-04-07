@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
@@ -68,12 +69,34 @@ public class MyActivity extends Activity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
-                Toast.makeText(MyActivity.this,"You Clicked : "+item.getTitle(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MyActivity.this,"You Clicked : "+item.getTitle(),Toast.LENGTH_SHORT).show();
 
                 ImageView gopher = (ImageView) findViewById(R.id.imageView2);
                 RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
                 RelativeLayout  gopherLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
                 LayoutInflater inflater = getLayoutInflater();
+
+//                View layout = inflater.inflate(R.layout.custom_toast,
+//                        (ViewGroup) findViewById(R.id.custom_toast_layout_id));
+
+                // set a message
+//                TextView text = (TextView) layout.findViewById(R.id.text);
+//                text.setText("New Game!");
+//                String txt = text.getText().toString();
+                String txt = "New Game";
+//                text.setText(txt);
+                SpannableString spannableString = new SpannableString(txt);
+                spannableString.setSpan(new RainbowSpan(getBaseContext()),0,8,0);
+//                text.setText(spannableString);
+
+//                // Toast...
+//                Toast toast = new Toast(getApplicationContext());
+//                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+//                toast.setDuration(Toast.LENGTH_LONG);
+//                toast.setView(layout);
+//                toast.show();
+                Toast.makeText(MyActivity.this,spannableString,Toast.LENGTH_LONG).show();
+
 
 
                 switch (item.getItemId()){

@@ -3,19 +3,19 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:weightSum="1">
+              android:weightSum="1" android:padding="5dp">
     <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="177dp"
             android:layout_height="151dp"
             android:id="@+id/imageView" android:layout_gravity="center_horizontal" android:src="@drawable/rotating_loading"
-            android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp" android:layout_weight="0.26"/>
     <RelativeLayout
             android:layout_width="match_parent"
             android:id="@+id/relativeLayout"
             android:layout_height="145dp" android:layout_gravity="center_horizontal" android:background="#ffb357"
             android:layout_marginLeft="10dp" android:layout_marginTop="5dp" android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="5dp" android:layout_weight="0.32">
         <ImageView
                 android:layout_width="92dp"
                 android:layout_height="52dp"
@@ -24,16 +24,16 @@
     </RelativeLayout>
     <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="118dp"
+            android:layout_height="140dp"
             android:background="#ff712a"
-            android:paddingTop="10dp" android:layout_margin="10dp" android:layout_weight="0.72">
+            android:paddingTop="10dp" android:layout_margin="10dp" android:layout_weight="0.23">
         <Button
                 android:layout_width="50dp"
                 android:layout_height="45dp"
                 android:text="L"
                 android:id="@+id/button" android:layout_gravity="left|center_vertical"
                 android:layout_marginLeft="100dp" android:background="#fffc9e"
-                android:onClick="goLeft"/>
+                android:onClick="goLeft" android:textColor="#841218"/>
         <Button
                 android:layout_width="50dp"
                 android:layout_height="45dp"
@@ -41,21 +41,21 @@
                 android:id="@+id/button2" android:layout_gravity="center_horizontal|top"
                 android:layout_marginTop="5dp" android:background="#fffc9e"
                 android:onClick="goUp"
-        />
+                android:textColor="#841218"/>
         <Button
                 android:layout_width="50dp"
                 android:layout_height="45dp"
                 android:text="D"
                 android:id="@+id/button3" android:layout_gravity="center_horizontal|bottom"
                 android:layout_marginBottom="5dp" android:background="#fffc9e"
-                android:onClick="goDown"/>
+                android:onClick="goDown" android:textColor="#841218"/>
         <Button
                 android:layout_width="50dp"
                 android:layout_height="45dp"
                 android:text="R"
                 android:id="@+id/button4" android:layout_gravity="right|center_vertical"
                 android:background="#fffc9e" android:layout_marginRight="100dp"
-                android:onClick="goRight"/>
+                android:onClick="goRight" android:textColor="#841218"/>
         <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
