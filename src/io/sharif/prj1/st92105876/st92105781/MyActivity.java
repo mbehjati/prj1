@@ -119,27 +119,31 @@ public class MyActivity extends Activity implements PopupMenu.OnMenuItemClickLis
     }
 
 
-
     public void goUp (View v){
         ImageView gopher = (ImageView) findViewById(R.id.imageView2);
         RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
-        param.topMargin -= 10;
+        if(param.topMargin>0)
+            param.topMargin -= 10;
         gopher.setLayoutParams(param);
 
     }
 
     public void goDown (View v){
         ImageView gopher = (ImageView) findViewById(R.id.imageView2);
+        RelativeLayout  gopherLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
-        param.topMargin += 10;
+        if(param.topMargin<gopherLayout.getHeight()-gopher.getHeight())
+            param.topMargin += 10;
         gopher.setLayoutParams(param);
 
     }
 
     public void goRight (View v){
         ImageView gopher = (ImageView) findViewById(R.id.imageView2);
+        RelativeLayout  gopherLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
-        param.leftMargin += 10;
+        if(param.leftMargin<gopherLayout.getWidth()-gopher.getWidth())
+            param.leftMargin += 10;
         gopher.setLayoutParams(param);
 
     }
@@ -147,7 +151,8 @@ public class MyActivity extends Activity implements PopupMenu.OnMenuItemClickLis
     public void goLeft (View v){
         ImageView gopher = (ImageView) findViewById(R.id.imageView2);
         RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
-        param.leftMargin -= 10;
+        if(param.leftMargin>-10)
+            param.leftMargin -= 10;
         gopher.setLayoutParams(param);
 
     }
