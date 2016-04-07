@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.*;
 import android.widget.*;
 
-public class MyActivity extends Activity {
+public class MyActivity extends Activity implements PopupMenu.OnMenuItemClickListener {
     /**
      * Called when the activity is first created.
      */
@@ -59,73 +59,61 @@ public class MyActivity extends Activity {
         return true;
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+
+
+
+        ImageView gopher = (ImageView) findViewById(R.id.imageView2);
+        RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
+        RelativeLayout  gopherLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+        LayoutInflater inflater = getLayoutInflater();
+
+
+        String txt = "";
+        int length=0;
+
+
+        switch (item.getItemId()){
+            case R.id.menu1first:
+                //save
+
+                txt = "Game saved";
+                length=10;
+                SharedPreferences settings = getApplicationContext().getSharedPreferences("p",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = settings.edit();
+
+                editor.putInt("left", param.leftMargin);
+                editor.putInt("top",param.topMargin);
+
+                editor.apply();
+
+                break;
+            case R.id.menu1second:
+                //new game
+                txt = "New game";
+                length=8;
+                param.leftMargin =gopherLayout.getWidth()/2 - gopher.getWidth()/2; ;
+                param.topMargin = gopherLayout.getHeight()/2 - gopher.getHeight()/2; ;
+                gopher.setLayoutParams(param);
+
+                break;
+
+
+        }
+
+        SpannableString spannableString = new SpannableString(txt);
+        spannableString.setSpan(new RainbowSpan(getBaseContext()),0,length,0);
+        Toast.makeText(MyActivity.this,spannableString,Toast.LENGTH_LONG).show();
+
+        return true;
+    }
+
     public void showGameMenu (View v) {
 
         PopupMenu gameMenuPopup =  new PopupMenu(MyActivity.this, v);
         gameMenuPopup.getMenuInflater().inflate(R.menu.menu1, gameMenuPopup.getMenu());
-//        gameMenuPopup.setOnMenuItemClickListener(this);
-//        gameMenuPopup.inflate(R.menu.menu1);
-        gameMenuPopup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-//                Toast.makeText(MyActivity.this,"You Clicked : "+item.getTitle(),Toast.LENGTH_SHORT).show();
-
-                ImageView gopher = (ImageView) findViewById(R.id.imageView2);
-                RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
-                RelativeLayout  gopherLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
-                LayoutInflater inflater = getLayoutInflater();
-
-//                View layout = inflater.inflate(R.layout.custom_toast,
-//                        (ViewGroup) findViewById(R.id.custom_toast_layout_id));
-
-                // set a message
-//                TextView text = (TextView) layout.findViewById(R.id.text);
-//                text.setText("New Game!");
-//                String txt = text.getText().toString();
-                String txt = "New Game";
-//                text.setText(txt);
-                SpannableString spannableString = new SpannableString(txt);
-                spannableString.setSpan(new RainbowSpan(getBaseContext()),0,8,0);
-//                text.setText(spannableString);
-
-//                // Toast...
-//                Toast toast = new Toast(getApplicationContext());
-//                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-//                toast.setDuration(Toast.LENGTH_LONG);
-//                toast.setView(layout);
-//                toast.show();
-                Toast.makeText(MyActivity.this,spannableString,Toast.LENGTH_LONG).show();
-
-
-
-                switch (item.getItemId()){
-                    case R.id.menu1first:
-                        //save
-
-
-                        SharedPreferences settings = getApplicationContext().getSharedPreferences("p",Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = settings.edit();
-
-                        editor.putInt("left", param.leftMargin);
-                        editor.putInt("top",param.topMargin);
-
-                        editor.apply();
-
-                        break;
-                    case R.id.menu1second:
-                        //new game
-                        param.leftMargin =gopherLayout.getWidth()/2 - gopher.getWidth()/2; ;
-                        param.topMargin = gopherLayout.getHeight()/2 - gopher.getHeight()/2; ;
-                        gopher.setLayoutParams(param);
-
-                        break;
-
-
-                }
-                return true;
-            }
-        });
+        gameMenuPopup.setOnMenuItemClickListener(this);
         gameMenuPopup.show();
 
     }
