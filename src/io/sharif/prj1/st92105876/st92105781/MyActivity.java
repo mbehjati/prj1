@@ -19,11 +19,13 @@ public class MyActivity extends Activity {
         setContentView(R.layout.main);
 
         //loading game from where it was saved
+        ImageView gopher = (ImageView) findViewById(R.id.imageView2);
+        RelativeLayout  gopherLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
         SharedPreferences settings = getApplicationContext().getSharedPreferences("p", Context.MODE_PRIVATE);
-        int top = settings.getInt("top", 50);
-        int left = settings.getInt("left", 130);
-        ImageView gopher = (ImageView) findViewById(R.id.imageView2);
+        int top = settings.getInt("top", gopherLayout.getWidth()/2 - gopher.getWidth()/2);
+        int left = settings.getInt("left", gopherLayout.getHeight()/2 - gopher.getHeight()/2);
+
         RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
         param.topMargin = top;
         param.leftMargin = left;
@@ -67,9 +69,10 @@ public class MyActivity extends Activity {
             public boolean onMenuItemClick(MenuItem item) {
 
                 Toast.makeText(MyActivity.this,"You Clicked : "+item.getTitle(),Toast.LENGTH_SHORT).show();
+
                 ImageView gopher = (ImageView) findViewById(R.id.imageView2);
                 RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) gopher.getLayoutParams();
-
+                RelativeLayout  gopherLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
                 LayoutInflater inflater = getLayoutInflater();
 
 
@@ -89,8 +92,8 @@ public class MyActivity extends Activity {
                         break;
                     case R.id.menu1second:
                         //new game
-                        param.leftMargin = (param.width - gopher.getWidth()) ;
-                        param.topMargin = (param.height - gopher.getHeight() ) ;
+                        param.leftMargin =gopherLayout.getWidth()/2 - gopher.getWidth()/2; ;
+                        param.topMargin = gopherLayout.getHeight()/2 - gopher.getHeight()/2; ;
                         gopher.setLayoutParams(param);
 
                         break;
